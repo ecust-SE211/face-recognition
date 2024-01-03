@@ -8,11 +8,13 @@
     <artifactId>recognition-camera</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
+
         <dependency>
-            <groupId>org.openpnp</groupId>
+            <groupId>org</groupId>
             <artifactId>opencv</artifactId>
-            <version>4.5.3-1</version>
-            <scope>compile</scope>
+            <scope>system</scope>
+            <version>4.7.0</version>
+            <systemPath>${project.basedir}\src\main\resources\libs\opencv-470.jar</systemPath>
         </dependency>
     </dependencies>
 

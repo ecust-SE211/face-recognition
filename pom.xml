@@ -21,9 +21,11 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.openpnp</groupId>
+      <groupId>org</groupId>
       <artifactId>opencv</artifactId>
-      <version>4.7.0-0</version>
+      <scope>system</scope>
+      <version>4.7.0</version>
+      <systemPath>${project.basedir}\recognition-camera\src\main\resources\libs\opencv-470.jar</systemPath>
     </dependency>
   </dependencies>
 </project>

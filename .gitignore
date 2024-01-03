@@ -18,6 +18,9 @@ target/
 *.iws
 *.iml
 *.ipr
+###忽略resources里的dlls和libs
+**/src/main/**/dlls/
+**/src/main/**/libs/
 
 ### NetBeans ###
 /nbproject/private/
