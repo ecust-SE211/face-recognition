@@ -11,8 +11,8 @@
   <url>https://github.com/ecust-SE211/face-recognition</url>
 
   <modules>
-    <module>face-recognization-camera</module>
-    <module>face-recognization-recognize</module>
+    <module>recognition-camera</module>
+    <module>recognition-recognize</module>
   </modules>
 
   <properties>
