@@ -65,7 +65,6 @@ public class CameraCapture {
     {
         MatOfRect faces = new MatOfRect();//用来画框的数组
 
-
         Mat grayFrame = new Mat();
         //当前帧图片进行灰度和直方均衡
         Imgproc.cvtColor(frame, grayFrame, Imgproc.COLOR_BGR2GRAY);
@@ -82,7 +81,7 @@ public class CameraCapture {
         faceCascade.detectMultiScale(grayFrame, faces, 1.1, 2, 0 | Objdetect.CASCADE_SCALE_IMAGE,
                 new Size(absoluteFaceSize, absoluteFaceSize), new Size());
 
-        // each rectangle in faces is a face: draw them!
+        // 所有的
         Rect[] facesArray = faces.toArray();
         for (int i = 0; i < facesArray.length; i++)
             Imgproc.rectangle(frame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0), 3);
@@ -107,7 +106,7 @@ public class CameraCapture {
         }
 
     }
-    public static void TestImage() {
+    public static void TestImage(Mat source,String aimPath) {
         Mat des = Imgcodecs.imread("E:/EclipseWorkplace/recognition/recognition-camera/src/main/Pictures/reference.jpg");
         MatOfRect faces = new MatOfRect();
         CascadeClassifier faceCascade = new CascadeClassifier();
@@ -115,6 +114,8 @@ public class CameraCapture {
         Mat videoMatGray = new Mat();
         Imgproc.cvtColor(des, videoMatGray, Imgproc.COLOR_BGR2GRAY);
         Imgproc.equalizeHist(videoMatGray, videoMatGray);
+
+
         faceCascade.detectMultiScale(videoMatGray, faces);
         for (int i = 0; i < faces.toArray().length; i++) {
             Rect r = faces.toArray()[i];
