@@ -1,11 +1,9 @@
 package io.github.ecust_se211.recognition.recognition_camera;
+
 import org.opencv.core.*;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
-import org.opencv.objdetect.Objdetect;
-import org.opencv.videoio.VideoCapture;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +19,9 @@ public class FaceRecognize {
     //巴氏距离阈值，应小于多少，越接近0表示越像
     public static double HISTCMP_BHATTACHARYYA_THRESHOLD = 0.3;
 
+    public static final String FACE_CASCADE_FILE_PATH = "recognition-camera/src/main/java/io/github/ecust_se211/recognition/recognition_camera/haarcascade_frontalface_alt.xml";
     public static boolean ComparePicture(Mat srcPic, Mat refPic) {
         System.out.println("\n==========直方图比较==========");
-        //自定义阈值
-
-
         try {
 
             long startTime = System.currentTimeMillis();
@@ -112,4 +108,28 @@ public class FaceRecognize {
         image = Imgcodecs.imread(path);
         return image;
     }
+
+    public static void StoreImage(Mat image, String path,boolean needPreProcess) {
+        if(needPreProcess==false){
+            Imgcodecs.imwrite(path, image);
+        }
+        else{
+            MatOfRect faces = new MatOfRect();
+            CascadeClassifier faceCascade = new CascadeClassifier();
+            faceCascade.load(FACE_CASCADE_FILE_PATH);
+            Mat videoMatGray = new Mat();
+            Imgproc.cvtColor(image, videoMatGray, Imgproc.COLOR_BGR2GRAY);
+            Imgproc.equalizeHist(videoMatGray, videoMatGray);
+
+
+            faceCascade.detectMultiScale(videoMatGray, faces);
+            for (int i = 0; i < faces.toArray().length; i++) {
+                Rect r = faces.toArray()[i];
+                Mat img_region = new Mat(image, r);
+                Imgcodecs.imwrite(path, img_region);
+            }
+        }
+
+    }
+
 }
