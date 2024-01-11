@@ -90,7 +90,13 @@ public class CameraCapture {
         if(facesArray.length>0) {//保存图片
             saveImage(frame, "test", "recognition-camera/src/main/java/io/github/ecust_se211/recognition/recognition_camera/src/Pictures/test.png", facesArray);
         }
-        System.out.println(CmpPic("E:/EclipseWorkplace/recognition/recognition-camera/src/main/Pictures/test.png", "E:/EclipseWorkplace/recognition/recognition-camera/src/main/Pictures/referenceNormalized.png"));
+        if(CmpPic("E:/EclipseWorkplace/recognition/recognition-camera/src/main/Pictures/test.png", "E:/EclipseWorkplace/recognition/recognition-camera/src/main/Pictures/ref.jpg")==1)
+        {
+            System.out.println("比对成功");
+        }
+        else{
+            System.out.println("比对失败");
+        }
 
     }
     //将图片保存到本地
